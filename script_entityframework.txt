@@ -1,0 +1,81 @@
+PM> Update-database
+Build started...
+Build succeeded.
+Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No store type was specified for the decimal property 'saldoinicial' on entity type 'Cuenta'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No store type was specified for the decimal property 'saldo' on entity type 'Movimientos'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+Microsoft.EntityFrameworkCore.Model.Validation[30000]
+      No store type was specified for the decimal property 'valor' on entity type 'Movimientos'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+Microsoft.EntityFrameworkCore.Infrastructure[10403]
+      Entity Framework Core 6.0.0 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.0' with options: None
+Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (21ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT 1
+Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (19ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT 1
+Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (8ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [MigrationId], [ProductVersion]
+      FROM [__EFMigrationsHistory]
+      ORDER BY [MigrationId];
+Microsoft.EntityFrameworkCore.Migrations[20402]
+      Applying migration '20240125000248_initial'.
+Applying migration '20240125000248_initial'.
+Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (8ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE [Cliente] (
+          [clienteid] int NOT NULL IDENTITY,
+          [contrasenia] nvarchar(max) NOT NULL,
+          [estado] bit NOT NULL,
+          [personaid] int NOT NULL,
+          [nombre] nvarchar(max) NOT NULL,
+          [genero] nvarchar(max) NULL,
+          [edad] int NOT NULL,
+          [identificacion] nvarchar(max) NOT NULL,
+          [direccion] nvarchar(max) NULL,
+          [telefono] nvarchar(max) NULL,
+          CONSTRAINT [PK_Cliente] PRIMARY KEY ([clienteid])
+      );
+Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE [Cuenta] (
+          [cuentaid] int NOT NULL IDENTITY,
+          [numerocuenta] nvarchar(max) NOT NULL,
+          [tipocuenta] nvarchar(max) NOT NULL,
+          [saldoinicial] decimal(18,2) NOT NULL,
+          [estado] bit NOT NULL,
+          [clienteid] int NOT NULL,
+          CONSTRAINT [PK_Cuenta] PRIMARY KEY ([cuentaid]),
+          CONSTRAINT [FK_Cuenta_Cliente_clienteid] FOREIGN KEY ([clienteid]) REFERENCES [Cliente] ([clienteid]) ON DELETE CASCADE
+      );
+Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE [Movimientos] (
+          [movimientosid] int NOT NULL IDENTITY,
+          [fecha] datetime2 NOT NULL,
+          [tipomovimiento] nvarchar(max) NOT NULL,
+          [valor] decimal(18,2) NOT NULL,
+          [saldo] decimal(18,2) NOT NULL,
+          [cuentaid] int NOT NULL,
+          CONSTRAINT [PK_Movimientos] PRIMARY KEY ([movimientosid]),
+          CONSTRAINT [FK_Movimientos_Cuenta_cuentaid] FOREIGN KEY ([cuentaid]) REFERENCES [Cuenta] ([cuentaid]) ON DELETE CASCADE
+      );
+Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (5ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX [IX_Cuenta_clienteid] ON [Cuenta] ([clienteid]);
+Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX [IX_Movimientos_cuentaid] ON [Movimientos] ([cuentaid]);
+Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (6ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+      VALUES (N'20240125000248_initial', N'6.0.0');
+Done.
