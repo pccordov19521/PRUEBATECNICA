@@ -17,62 +17,101 @@ namespace APIREST.Controllers
         }
 
         [HttpGet("listar")]
+        
         [ActionName(nameof(GetCuentasAsync))]
         public IEnumerable<Cuenta> GetCuentasAsync()
         {
-            return _cuentaRepository.GetCuentas();
+            try
+            {
+                return _cuentaRepository.GetCuentas();
+            }
+
+            catch (Exception ex)
+            {
+
+                return ((IEnumerable<Cuenta>)BadRequest(ex.Message));
+            }
         }
 
         [HttpGet("{id}")]
         [ActionName(nameof(GetCuentaById))]
         public ActionResult<Cuenta> GetCuentaById(int id)
         {
-            var cuentaByID = _cuentaRepository.GetCuentaById(id);
-            if (cuentaByID == null)
+            try
             {
-                return NotFound();
+
+                var cuentaByID = _cuentaRepository.GetCuentaById(id);
+                if (cuentaByID == null)
+                {
+                    return NotFound();
+                }
+                return cuentaByID;
             }
-            return cuentaByID;
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpPost("Crear")]
         [ActionName(nameof(CreateCuentaAsync))]
         public async Task<ActionResult<Cuenta>> CreateCuentaAsync(Cuenta cuenta)
         {
-            cuenta.saldofinal = cuenta.saldoinicial;
-            await _cuentaRepository.CreateCuentaAsync(cuenta);
-            return CreatedAtAction(nameof(GetCuentaById), new { id = cuenta.cuentaid }, cuenta);
+            try
+            {
 
+                cuenta.saldofinal = cuenta.saldoinicial;
+                await _cuentaRepository.CreateCuentaAsync(cuenta);
+                return CreatedAtAction(nameof(GetCuentaById), new { id = cuenta.cuentaid }, cuenta);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpPut("{id}")]
         [ActionName(nameof(UpdateCuenta))]
         public async Task<ActionResult> UpdateCuenta(int id, Cuenta cuenta)
         {
-            if (id != cuenta.cuentaid)
+            try
             {
-                return BadRequest();
+
+                if (id != cuenta.cuentaid)
+                {
+                    return BadRequest();
+                }
+
+                await _cuentaRepository.UpdateCuentaAsync(cuenta);
+
+                return NoContent();
             }
-
-            await _cuentaRepository.UpdateCuentaAsync(cuenta);
-
-            return NoContent();
-
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpDelete("{id}")]
         [ActionName(nameof(DeleteCuenta))]
         public async Task<IActionResult> DeleteCuenta(int id)
         {
-            var cuenta = _cuentaRepository.GetCuentaById(id);
-            if (cuenta == null)
+            try
             {
-                return NotFound();
+                var cuenta = _cuentaRepository.GetCuentaById(id);
+                if (cuenta == null)
+                {
+                    return NotFound();
+                }
+
+                await _cuentaRepository.DeleteCuentaAsync(cuenta);
+
+                return NoContent();
             }
-
-            await _cuentaRepository.DeleteCuentaAsync(cuenta);
-
-            return NoContent();
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
 

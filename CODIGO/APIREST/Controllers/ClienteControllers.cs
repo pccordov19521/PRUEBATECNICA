@@ -20,42 +20,77 @@ namespace APIREST.Controllers
         [ActionName(nameof(GetClientesAsync))]
         public IEnumerable<Cliente> GetClientesAsync()
         {
-            return _clienteRepository.GetClientes();
+            try
+            {
+                return _clienteRepository.GetClientes();
+            }
+            catch (Exception ex)
+            {
+
+                return (IEnumerable<Cliente>)BadRequest(ex.Message);
+            }
         }
 
         [HttpGet("{id}")]
         [ActionName(nameof(GetClienteById))]
         public ActionResult<Cliente> GetClienteById(int id)
         {
-            var clienteByID = _clienteRepository.GetClienteById(id);
-            if (clienteByID == null)
+
+            try
             {
-                return NotFound();
+                var clienteByID = _clienteRepository.GetClienteById(id);
+                if (clienteByID == null)
+                {
+                    return NotFound();
+                }
+                return clienteByID;
             }
-            return clienteByID;
+            catch (Exception ex)
+            {
+
+                return (BadRequest(ex.Message));
+            }
         }
 
         [HttpPost("Crear")]
         [ActionName(nameof(CreateClienteAsync))]
         public async Task<ActionResult<Cliente>> CreateClienteAsync(Cliente cliente)
         {
-            cliente.personaid = cliente.clienteid;
-            await _clienteRepository.CreateClienteAsync(cliente);
-            return CreatedAtAction(nameof(GetClienteById), new { id = cliente.clienteid }, cliente);
+            try
+            {
+                
+                await _clienteRepository.CreateClienteAsync(cliente);
+                return CreatedAtAction(nameof(GetClienteById), new { id = cliente.clienteid }, cliente);
+            }
+            catch (Exception ex)
+            {
+
+                return (BadRequest(ex.Message));
+            }
         }
 
         [HttpPut("{id}")]
         [ActionName(nameof(UpdateCliente))]
         public async Task<ActionResult> UpdateCliente(int id, Cliente cliente)
         {
-            if (id != cliente.clienteid)
+
+            try
             {
-                return BadRequest();
+
+               if (id != cliente.clienteid)
+                {
+                    return BadRequest();
+                }
+
+                await _clienteRepository.UpdateClienteAsync(cliente);
+
+                return NoContent();
             }
+            catch (Exception ex)
+            {
 
-            await _clienteRepository.UpdateClienteAsync(cliente);
-
-            return NoContent();
+                return (BadRequest(ex.Message));
+            }
 
         }
 
@@ -63,15 +98,24 @@ namespace APIREST.Controllers
         [ActionName(nameof(DeleteCliente))]
         public async Task<IActionResult> DeleteCliente(int id)
         {
-            var cliente = _clienteRepository.GetClienteById(id);
-            if (cliente == null)
+            try
             {
-                return NotFound();
+
+
+                var cliente = _clienteRepository.GetClienteById(id);
+                if (cliente == null)
+                {
+                    return NotFound();
+                }
+
+                await _clienteRepository.DeleteClienteAsync(cliente);
+
+                return NoContent();
             }
-
-            await _clienteRepository.DeleteClienteAsync(cliente);
-
-            return NoContent();
+            catch (Exception ex)
+            {
+                return (BadRequest(ex.Message));
+            }
         }
     }
 }

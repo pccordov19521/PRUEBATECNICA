@@ -1,4 +1,5 @@
 ﻿using APIREST.Context;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace APIREST.Models.Repository
@@ -11,14 +12,14 @@ namespace APIREST.Models.Repository
         protected readonly ApplicationDbContext _context;
         public ClienteRepository(ApplicationDbContext context) => _context = context;
        
-        public IEnumerable<Cliente> GetClientes()
+        public  IEnumerable<Cliente> GetClientes()
         {
             return _context.Cliente.ToList();
         }
 
         public Cliente GetClienteById(int id)
         {
-            return _context.Cliente.Find(id);
+                return _context.Cliente.Find(id);
         }
         public async Task<Cliente> CreateClienteAsync(Cliente cliente)
         {

@@ -6,7 +6,7 @@
         public int clienteid { get; set; }
         public string? contrasenia { get; set; }
         public Boolean estado { get; set; }
-
         
+
     }
 }

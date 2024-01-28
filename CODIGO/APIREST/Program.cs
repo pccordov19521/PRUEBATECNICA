@@ -16,12 +16,12 @@ builder.Services.AddTransient<IClienteRepository, ClienteRepository>();
 builder.Services.AddTransient<ICuentaRepository, CuentaRepository>();
 builder.Services.AddTransient<IMovimientosRepository, MovimientosRepository>();
 
-builder.Services.AddHttpsRedirection(options =>
-{
+//builder.Services.AddHttpsRedirection(options =>
+//{
 
-    options.RedirectStatusCode = (int)System.Net.HttpStatusCode.TemporaryRedirect;
-    options.HttpsPort = 5001;
-});
+//    options.RedirectStatusCode = (int)System.Net.HttpStatusCode.TemporaryRedirect;
+//    options.HttpsPort = 5001;
+//});
 
 var app = builder.Build();
 
