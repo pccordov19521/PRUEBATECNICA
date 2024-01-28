@@ -1,0 +1,337 @@
+{
+	"info": {
+		"_postman_id": "c1bee249-68cd-4101-b1df-bdaba58126a8",
+		"name": "endpoints",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14987353"
+	},
+	"item": [
+		{
+			"name": "https://localhost:7014/clientes/listar",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n  \"nombre\": \"Daniel\",\r\n  \"edad\": \"12\",\r\n  \"correo\": \"dd@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7014/clientes/listar",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7014",
+					"path": [
+						"clientes",
+						"listar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:7014/clientes/{id}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7014/clientes/2",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7014",
+					"path": [
+						"clientes",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:7014/clientes/crear",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"personaid\": 3,\r\n  \"nombre\": \"Marianela Montalvo\",\r\n  \"genero\": \"FEMENINO\",\r\n  \"edad\": 20,\r\n  \"identificacion\": \"5654345872\",\r\n  \"direccion\": \"Amazonas y NNUU\",\r\n  \"telefono\": \"097548965\",\r\n  \"clienteid\": 0,\r\n  \"contrasenia\": \"5678\",\r\n  \"estado\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7014/clientes/crear",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7014",
+					"path": [
+						"clientes",
+						"crear"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:7014/clientes/{id}",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7014/clientes/5",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7014",
+					"path": [
+						"clientes",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:7014/clientes/{id}",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n    \"contrasenia\": \"1234\",\r\n    \"estado\": true,\r\n    \"personaid\": 2,\r\n    \"nombre\": \"Jose Lema\",\r\n    \"genero\": \"MASCULINO\",\r\n    \"edad\": 20,\r\n    \"identificacion\": \"1534556765\",\r\n    \"direccion\": \"Otavalo sn y principal\",\r\n    \"telefono\": \"098254785\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7014/clientes/5",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7014",
+					"path": [
+						"clientes",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:7014/cuentas/listar",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7014/cuentas/listar",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7014",
+					"path": [
+						"cuentas",
+						"listar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:7014/cuentas/Crear",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n \r\n  \"numerocuenta\": \"995545\",\r\n  \"tipocuenta\": \"Corriente\",\r\n  \"saldoinicial\": 1000,\r\n  \"estado\": true,\r\n  \"clienteid\": 2,\r\n  \"saldofinal\": 1000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7014/cuentas/Crear",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7014",
+					"path": [
+						"cuentas",
+						"Crear"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:7014/cuentas/{id}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7014/cuentas/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7014",
+					"path": [
+						"cuentas",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:7014/cuentas/{ID}",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"cuentaid\": 6,\r\n  \"numerocuenta\": \"585545\",\r\n  \"tipocuenta\": \"Corriente\",\r\n  \"saldoinicial\": 1000,\r\n  \"estado\": true,\r\n  \"clienteid\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7014/cuentas/6",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7014",
+					"path": [
+						"cuentas",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:7014/cuentas/{ID}",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7014/cuentas/6",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7014",
+					"path": [
+						"cuentas",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:7014/movimientos/listar",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7014/movimientos/listar",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7014",
+					"path": [
+						"movimientos",
+						"listar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:7014/movimientos/crear",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"movimientosid\": 0,\r\n  \"fecha\": \"2024-01-26T01:37:44.543Z\",\r\n  \"tipomovimiento\": \"DEPOSITO de 100 \",\r\n  \"valor\": 100,\r\n \"cuentaid\": 7\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7014/movimientos/crear",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7014",
+					"path": [
+						"movimientos",
+						"crear"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:7014/movimientos/reporte?fechainicio={}&fechafin={}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7014/movimientos/reporte?fechainicio=2024/01/25&fechafin=2024/01/26",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7014",
+					"path": [
+						"movimientos",
+						"reporte"
+					],
+					"query": [
+						{
+							"key": "fechainicio",
+							"value": "2024/01/25"
+						},
+						{
+							"key": "fechafin",
+							"value": "2024/01/26"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
