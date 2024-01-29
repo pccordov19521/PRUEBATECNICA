@@ -9,6 +9,7 @@ namespace APIREST.Models.Repository
         protected readonly ApplicationDbContext _context;
         public MovimientosRepository(ApplicationDbContext context) => _context = context;
 
+     
         public IEnumerable<Movimientos> GetMovimientos()
         {
             return _context.Movimientos.ToList();

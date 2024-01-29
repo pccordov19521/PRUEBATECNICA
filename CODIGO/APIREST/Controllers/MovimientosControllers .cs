@@ -61,6 +61,7 @@ namespace APIREST.Controllers
                 if (cuenta.saldofinal + movimiento.valor < 0)
                 {
                     movimiento.tipomovimiento = "Error Saldo Insuficiente";
+                    movimiento.saldo = cuenta.saldofinal;
                     return movimiento;
 
                 }
